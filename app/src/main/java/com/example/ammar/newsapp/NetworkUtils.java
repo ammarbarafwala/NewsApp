@@ -3,11 +3,16 @@ package com.example.ammar.newsapp;
 import android.net.Uri;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -46,6 +51,23 @@ public class NetworkUtils {
         }finally {
 
             urlConnection.disconnect();
+        }
+    }
+    public  static ArrayList<NewsItem> jsonParser(String jsonString){
+        try {
+            JSONObject jsonObject = new JSONObject(jsonString);
+            JSONArray jsonArray=jsonObject.getJSONArray("articles");
+            ArrayList<NewsItem> arr=new ArrayList<>();
+            for (int i=0; i< jsonArray.length() ; i++ ) {
+                JSONObject jobj=jsonArray.getJSONObject(i);
+                arr.add(new NewsItem(jobj.getString("author"), jobj.getString("title"), jobj.getString("description"),
+                        jobj.getString("url"), jobj.getString("urlToImage"), jobj.getString("publishedAt")));
+            }
+            return arr;
+        }
+        catch (JSONException ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 }
