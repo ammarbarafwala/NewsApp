@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.example.ammar.newsapp.data.NewsItem;
+
 /**
  * Created by Ammar on 6/21/2017.
  */

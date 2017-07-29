@@ -1,9 +1,10 @@
-package com.example.ammar.newsapp;
+package com.example.ammar.newsapp.data;
 
 /**
  * Created by Ammar on 6/29/2017.
  */
 
+// Model class to store all data
 public class NewsItem {
     String author, title, description, url, urlToImage, publishedAt;
 
